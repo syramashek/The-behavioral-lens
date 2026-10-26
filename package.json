@@ -1,0 +1,8 @@
+{
+  "name": "behavioral-lens-blog",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Research-informed psychology publication, easy to manage with Pages CMS and Netlify.",
+  "scripts": {"build": "node build.mjs"},
+  "engines": {"node": ">=18"}
+}

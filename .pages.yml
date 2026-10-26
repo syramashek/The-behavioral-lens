@@ -1,0 +1,113 @@
+media:
+  input: assets/uploads
+  output: /assets/uploads
+
+content:
+  - name: posts
+    label: Blog articles
+    type: collection
+    path: content/posts
+    format: json
+    filename: "{title}.json"
+    view:
+      fields: [title, category, date, published]
+      primary: title
+      sort: [date, title]
+      default:
+        sort: date
+        order: desc
+    fields:
+      - name: title
+        label: Headline
+        type: string
+        required: true
+      - name: kicker
+        label: Eyebrow above headline
+        type: string
+      - name: description
+        label: Summary for the website and search engines
+        type: text
+        required: true
+      - name: category
+        label: Category
+        type: select
+        required: true
+        options:
+          values: ["History & Gender", "Psychology", "Addiction & Recovery", "Mental Health", "Psychopharmacology", "Ethics & Society", "Research Notes"]
+      - name: date
+        label: Publication date
+        type: date
+        required: true
+      - name: published
+        label: Published (turn off to keep as draft)
+        type: boolean
+      - name: featured
+        label: Feature on homepage
+        type: boolean
+      - name: reading_minutes
+        label: Estimated read time in minutes
+        type: number
+      - name: cover_image
+        label: Optional cover image
+        type: image
+      - name: pdf_url
+        label: Link to original academic paper (optional)
+        type: file
+        options:
+          extensions: [pdf]
+      - name: body
+        label: Full article
+        type: rich-text
+        required: true
+        options:
+          format: html
+          switcher: true
+
+  - name: site
+    label: Site, socials, and portfolio links
+    type: file
+    path: content/site.json
+    format: json
+    fields:
+      - name: site_name
+        label: Publication name
+        type: string
+      - name: eyebrow
+        label: Small heading above hero
+        type: string
+      - name: tagline
+        label: Homepage headline
+        type: string
+      - name: description
+        label: Homepage intro
+        type: text
+      - name: about
+        label: About the author
+        type: text
+      - name: portfolio_url
+        label: Link to professional portfolio
+        type: string
+      - name: contact_url
+        label: Link to contact page
+        type: string
+      - name: email
+        label: Public contact email address
+        type: string
+      - name: instagram_url
+        label: Instagram profile URL
+        type: string
+      - name: linkedin_url
+        label: LinkedIn profile URL
+        type: string
+      - name: tiktok_url
+        label: TikTok profile URL
+        type: string
+      - name: youtube_url
+        label: YouTube channel URL
+        type: string
+      - name: threads_url
+        label: Threads profile URL
+        type: string
+      - name: site_url
+        label: New blog's live web address (optional; include https://)
+        type: string
