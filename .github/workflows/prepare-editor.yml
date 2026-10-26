@@ -1,0 +1,31 @@
+name: Prepare Behavioral Lens editor files
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/prepare-editor.yml"
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Unpack complete editable project
+        run: |
+          unzip -o "Behavioral_Lens_Phone_Editing_Package_Oct26.zip"
+          test -s .pages.yml
+          test -s build.mjs
+          test -s content/site.json
+          test -f content/posts/marriage-without-freedom.json
+          npm run build
+      - name: Commit editable files
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .pages.yml .gitignore README.md build.mjs package.json netlify.toml assets content dist
+          if ! git diff --cached --quiet; then
+            git commit -m "Add editable site files and Pages CMS configuration"
+            git push
+          fi
